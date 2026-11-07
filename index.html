@@ -11,172 +11,231 @@
     body {
       font-family: 'Poppins', sans-serif;
     }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #1f2937;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #3b82f6;
-      border-radius: 3px;
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-gray-950">
 
-  <!-- ENCABEZADO -->
+  <!-- ENCABEZADO OPTIMIZADO PARA MÓVIL -->
   <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <div class="bg-gradient-to-tr from-amber-500 to-amber-300 p-2.5 rounded-xl text-gray-950 font-black text-xl shadow-lg shadow-amber-500/20">
-          <i class="fa-solid font-bold">VB</i>
+    <div class="max-w-md mx-auto px-4 py-3 flex flex-col gap-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="bg-gradient-to-tr from-amber-500 to-amber-300 w-9 h-9 rounded-xl text-gray-950 font-black text-lg flex items-center justify-center shadow-lg shadow-amber-500/20">
+            VB
+          </div>
+          <div>
+            <h1 class="text-lg font-bold bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500 bg-clip-text text-transparent leading-tight">VeneBulk</h1>
+            <p class="text-[10px] text-gray-400">Nutrición & Calistenia en Casa</p>
+          </div>
         </div>
-        <div>
-          <h1 class="text-xl font-bold bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500 bg-clip-text text-transparent">VeneBulk</h1>
-          <p class="text-xs text-gray-400">Nutrición Venezolana & Calistenia en Casa</p>
+
+        <!-- PORCENTAJE GLOBAL RÁPIDO EN CABECERA -->
+        <div class="bg-gray-950 px-3 py-1 rounded-full border border-gray-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-trophy text-amber-400 text-xs"></i>
+          <span id="header-progress-text" class="text-xs font-bold text-amber-400">0%</span>
         </div>
       </div>
 
-      <nav class="flex items-center gap-2 bg-gray-950 p-1.5 rounded-xl border border-gray-800 text-sm">
-        <button onclick="switchTab('calculator')" id="tab-calculator" class="px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-amber-500 text-gray-950 shadow-md">
-          <i class="fa-solid fa-calculator mr-1.5"></i>Calculadora
+      <!-- NAVEGACIÓN DESPLAZABLE EN MÓVILES -->
+      <nav class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+        <button onclick="switchTab('calculator')" id="tab-calculator" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 bg-amber-500 text-gray-950 shadow-md">
+          <i class="fa-solid fa-calculator mr-1"></i>Calculadora
         </button>
-        <button onclick="switchTab('nutrition')" id="tab-nutrition" class="px-4 py-2 rounded-lg font-medium transition-all duration-200 text-gray-400 hover:text-white">
-          <i class="fa-solid fa-utensils mr-1.5"></i>Nutrición
+        <button onclick="switchTab('nutrition')" id="tab-nutrition" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 text-gray-400 hover:text-white">
+          <i class="fa-solid fa-utensils mr-1"></i>Nutrición
         </button>
-        <button onclick="switchTab('workout')" id="tab-workout" class="px-4 py-2 rounded-lg font-medium transition-all duration-200 text-gray-400 hover:text-white">
-          <i class="fa-solid fa-dumbbell mr-1.5"></i>Entrenamiento
+        <button onclick="switchTab('workout')" id="tab-workout" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 text-gray-400 hover:text-white">
+          <i class="fa-solid fa-dumbbell mr-1"></i>Entrenamiento
         </button>
-        <button onclick="switchTab('progress')" id="tab-progress" class="px-4 py-2 rounded-lg font-medium transition-all duration-200 text-gray-400 hover:text-white">
-          <i class="fa-solid fa-chart-line mr-1.5"></i>Bitácora
+        <button onclick="switchTab('progress')" id="tab-progress" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 text-gray-400 hover:text-white">
+          <i class="fa-solid fa-chart-line mr-1"></i>Bitácora
         </button>
       </nav>
     </div>
   </header>
 
   <!-- CONTENIDO PRINCIPAL -->
-  <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+  <main class="max-w-md mx-auto px-4 py-6 flex-grow w-full space-y-6">
 
     <!-- SECCIÓN CALCULADORA -->
-    <section id="section-calculator" class="space-y-8">
-      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-8 shadow-xl">
-        <h2 class="text-2xl font-bold text-amber-400 mb-2 flex items-center gap-2">
+    <section id="section-calculator" class="space-y-5">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
+        <h2 class="text-lg font-bold text-amber-400 mb-1 flex items-center gap-2">
           <i class="fa-solid fa-user-gear"></i> Perfil Físico & Objetivos
         </h2>
-        <p class="text-gray-400 text-sm mb-6">Ingresa tus datos corporales para adaptar tu consumo diario de calorías y proteína.</p>
+        <p class="text-gray-400 text-xs mb-4">Ingresa tus datos corporales para calcular tus calorías y proteína ideal.</p>
 
-        <form id="user-form" onsubmit="calculateStats(event)" class="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div>
-            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Peso (kg)</label>
-            <input type="number" id="input-weight" value="51" step="0.1" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-amber-400 font-bold focus:outline-none focus:border-amber-500">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Estatura (cm)</label>
-            <input type="number" id="input-height" value="168" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-amber-400 font-bold focus:outline-none focus:border-amber-500">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Edad (años)</label>
-            <input type="number" id="input-age" value="23" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-amber-400 font-bold focus:outline-none focus:border-amber-500">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Sexo</label>
-            <select id="input-gender" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-amber-400 font-bold focus:outline-none focus:border-amber-500">
-              <option value="male" selected>Masculino</option>
-              <option value="female">Femenino</option>
-            </select>
+        <form id="user-form" onsubmit="calculateStats(event)" class="space-y-4">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Peso (kg)</label>
+              <input type="number" id="input-weight" value="51" step="0.1" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Estatura (cm)</label>
+              <input type="number" id="input-height" value="168" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+            </div>
           </div>
 
-          <div class="md:col-span-4 flex justify-end">
-            <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-gray-950 font-bold px-8 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-amber-500/20 flex items-center gap-2">
-              <i class="fa-solid fa-calculator"></i> Calcular Plan de Masa
-            </button>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Edad (años)</label>
+              <input type="number" id="input-age" value="23" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Sexo</label>
+              <select id="input-gender" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+                <option value="male" selected>Masculino</option>
+                <option value="female">Femenino</option>
+              </select>
+            </div>
           </div>
+
+          <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-950 font-bold py-3 rounded-xl transition-all duration-200 shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 text-sm">
+            <i class="fa-solid fa-calculator"></i> Calcular Plan de Masa
+          </button>
         </form>
       </div>
 
       <!-- RESULTADOS -->
-      <div id="calc-results" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl">
-          <div class="text-xs text-gray-400 font-semibold uppercase mb-1">IMC Actual</div>
-          <div id="res-bmi" class="text-3xl font-black text-amber-400">18.1 kg/m²</div>
-          <p id="res-bmi-status" class="text-xs text-amber-300 mt-2">Bajo peso leve (ideal para superávit limpio)</p>
+      <div id="calc-results" class="grid grid-cols-1 gap-3">
+        <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-gray-400 font-semibold uppercase">IMC Actual</div>
+            <div id="res-bmi" class="text-xl font-black text-amber-400">18.1 kg/m²</div>
+          </div>
+          <span class="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/20 px-2.5 py-1 rounded-full font-medium">Bajo peso leve</span>
         </div>
-        <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl">
-          <div class="text-xs text-gray-400 font-semibold uppercase mb-1">Meta Calórica Diaria</div>
-          <div id="res-calories" class="text-3xl font-black text-emerald-400">2,450 kcal</div>
-          <p class="text-xs text-gray-400 mt-2">Incluye superávit de +400 kcal para aumento de masa</p>
+
+        <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-gray-400 font-semibold uppercase">Meta Calórica Diaria</div>
+            <div id="res-calories" class="text-xl font-black text-emerald-400">2,450 kcal</div>
+          </div>
+          <span class="text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium">+400 kcal superávit</span>
         </div>
-        <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl">
-          <div class="text-xs text-gray-400 font-semibold uppercase mb-1">Objetivo Proteico</div>
-          <div id="res-protein" class="text-3xl font-black text-cyan-400">92 - 102 g</div>
-          <p class="text-xs text-gray-400 mt-2">Equivalente a 1.8g - 2.0g por kg de peso</p>
+
+        <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-gray-400 font-semibold uppercase">Objetivo Proteico</div>
+            <div id="res-protein" class="text-xl font-black text-cyan-400">92 - 102 g</div>
+          </div>
+          <span class="text-[10px] bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 px-2.5 py-1 rounded-full font-medium">1.8g - 2.0g / kg</span>
         </div>
       </div>
     </section>
 
     <!-- SECCIÓN NUTRICIÓN -->
-    <section id="section-nutrition" class="space-y-6 hidden">
-      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-8">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-          <div>
-            <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-2">
-              <i class="fa-solid fa-plate-wheat"></i> Menú Mensual Adaptado a Venezuela
-            </h2>
-            <p class="text-gray-400 text-sm">Alimentos locales económicos de alto valor nutricional y proteico.</p>
+    <section id="section-nutrition" class="space-y-4 hidden">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5">
+        <div class="mb-4">
+          <h2 class="text-lg font-bold text-amber-400 flex items-center gap-2">
+            <i class="fa-solid fa-utensils"></i> Menú Mensual Venezolano
+          </h2>
+          <p class="text-gray-400 text-xs mt-0.5">Alimentos económicos locales. Marca los que vayas ingiriendo.</p>
+        </div>
+
+        <!-- BARRA DE PROGRESO NUTRICIONAL -->
+        <div class="mb-5 bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-1.5">
+          <div class="flex justify-between text-xs font-semibold">
+            <span class="text-gray-300">Comidas Consumidas este Mes</span>
+            <span id="nutri-progress-percent" class="text-amber-400">0%</span>
           </div>
-          <div class="flex gap-2 bg-gray-950 p-1 rounded-xl border border-gray-800">
-            <button onclick="switchNutriWeek(1)" id="nutri-w1" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-gray-950">Semana 1</button>
-            <button onclick="switchNutriWeek(2)" id="nutri-w2" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Semana 2</button>
-            <button onclick="switchNutriWeek(3)" id="nutri-w3" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Semana 3</button>
-            <button onclick="switchNutriWeek(4)" id="nutri-w4" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Semana 4</button>
+          <div class="w-full bg-gray-900 rounded-full h-2 overflow-hidden border border-gray-800">
+            <div id="nutri-progress-bar" class="bg-gradient-to-r from-amber-500 to-amber-300 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
         </div>
 
-        <div id="nutrition-meals-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Carga dinámicamente -->
+        <!-- BOTONES DE SEMANA -->
+        <div class="grid grid-cols-4 gap-1.5 bg-gray-950 p-1.5 rounded-xl border border-gray-800 mb-5">
+          <button onclick="switchNutriWeek(1)" id="nutri-w1" class="py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-gray-950">Sem 1</button>
+          <button onclick="switchNutriWeek(2)" id="nutri-w2" class="py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Sem 2</button>
+          <button onclick="switchNutriWeek(3)" id="nutri-w3" class="py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Sem 3</button>
+          <button onclick="switchNutriWeek(4)" id="nutri-w4" class="py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Sem 4</button>
+        </div>
+
+        <!-- LISTA DE COMIDAS DINÁMICA -->
+        <div id="nutrition-meals-container" class="space-y-4">
+          <!-- Se renderiza por JS -->
         </div>
       </div>
     </section>
 
     <!-- SECCIÓN ENTRENAMIENTO -->
-    <section id="section-workout" class="space-y-6 hidden">
-      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-8">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-          <div>
-            <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-2">
-              <i class="fa-solid fa-house"></i> Rutina de Calistenia en Casa (Sin Pesas)
-            </h2>
-            <p class="text-gray-400 text-sm">Utilizando tu peso corporal, el piso, sillas o la cama y peso casero (mochila).</p>
-          </div>
+    <section id="section-workout" class="space-y-4 hidden">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5">
+        <div class="mb-4">
+          <h2 class="text-lg font-bold text-amber-400 flex items-center gap-2">
+            <i class="fa-solid fa-house"></i> Rutina Casera de Calistenia
+          </h2>
+          <p class="text-gray-400 text-xs mt-0.5">Ejercicios en piso, cama o silla. Marca cada uno al finalizarlo.</p>
+        </div>
 
-          <div class="flex flex-wrap gap-2 bg-gray-950 p-1.5 rounded-xl border border-gray-800">
-            <button onclick="renderWorkoutDay(1)" id="day-btn-1" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-gray-950">Lun (Torso)</button>
-            <button onclick="renderWorkoutDay(2)" id="day-btn-2" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Mar (Piernas)</button>
-            <button onclick="renderWorkoutDay(3)" id="day-btn-3" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Mié (Descanso)</button>
-            <button onclick="renderWorkoutDay(4)" id="day-btn-4" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Jue (Empuje/Tracc)</button>
-            <button onclick="renderWorkoutDay(5)" id="day-btn-5" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Vie (Piernas/Core)</button>
-            <button onclick="renderWorkoutDay(6)" id="day-btn-6" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-400 hover:text-white">Sáb-Dom</button>
+        <!-- BARRA DE PROGRESO ENTRENAMIENTO -->
+        <div class="mb-5 bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-1.5">
+          <div class="flex justify-between text-xs font-semibold">
+            <span class="text-gray-300">Ejercicios Completados este Mes</span>
+            <span id="workout-progress-percent" class="text-amber-400">0%</span>
+          </div>
+          <div class="w-full bg-gray-900 rounded-full h-2 overflow-hidden border border-gray-800">
+            <div id="workout-progress-bar" class="bg-gradient-to-r from-amber-500 to-amber-300 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
         </div>
 
+        <!-- BOTONES DE DÍA DESPLAZABLES EN MÓVIL -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar bg-gray-950 p-1.5 rounded-xl border border-gray-800 mb-5">
+          <button onclick="renderWorkoutDay(1)" id="day-btn-1" class="px-3 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap bg-amber-500 text-gray-950">Lun (Torso)</button>
+          <button onclick="renderWorkoutDay(2)" id="day-btn-2" class="px-3 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap text-gray-400 hover:text-white">Mar (Pierna)</button>
+          <button onclick="renderWorkoutDay(3)" id="day-btn-3" class="px-3 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap text-gray-400 hover:text-white">Mié (Descanso)</button>
+          <button onclick="renderWorkoutDay(4)" id="day-btn-4" class="px-3 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap text-gray-400 hover:text-white">Jue (Empuje/Tracc)</button>
+          <button onclick="renderWorkoutDay(5)" id="day-btn-5" class="px-3 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap text-gray-400 hover:text-white">Vie (Pierna/Core)</button>
+          <button onclick="renderWorkoutDay(6)" id="day-btn-6" class="px-3 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap text-gray-400 hover:text-white">Sáb-Dom</button>
+        </div>
+
+        <!-- LISTA DE EJERCICIOS DINÁMICA -->
         <div id="workout-list-container" class="space-y-4">
-          <!-- Carga dinámicamente -->
+          <!-- Se renderiza por JS -->
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN BITÁCORA / PROGRESO -->
-    <section id="section-progress" class="space-y-6 hidden">
-      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-8">
-        <h2 class="text-2xl font-bold text-amber-400 mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-calendar-check"></i> Registro Diario de Cumplimiento
+    <!-- SECCIÓN BITÁCORA / PROGRESO GENERAL -->
+    <section id="section-progress" class="space-y-4 hidden">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5">
+        <h2 class="text-lg font-bold text-amber-400 mb-1 flex items-center gap-2">
+          <i class="fa-solid fa-chart-line"></i> Control Mensual Integrado
         </h2>
-        <p class="text-gray-400 text-sm mb-6">Marca los días completados para llevar el control de tu constancia durante el mes.</p>
+        <p class="text-gray-400 text-xs mb-4">Registro automático de avance mensual sumando dieta y ejercicios.</p>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3" id="calendar-grid">
-          <!-- Carga dinámicamente 28-30 días -->
+        <!-- TARJETA RESUMEN -->
+        <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-3 mb-5">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-gray-400">Progreso Total del Mes:</span>
+            <span id="bitacora-total-percent" class="text-sm font-black text-amber-400">0%</span>
+          </div>
+          <div class="w-full bg-gray-900 rounded-full h-3 overflow-hidden border border-gray-800">
+            <div id="bitacora-total-bar" class="bg-gradient-to-r from-amber-500 via-emerald-400 to-cyan-400 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-gray-800 text-[11px]">
+            <div class="text-gray-400">Dieta: <span id="bitacora-nutri-count" class="text-amber-400 font-bold">0</span> consumidos</div>
+            <div class="text-gray-400">Rutinas: <span id="bitacora-workout-count" class="text-cyan-400 font-bold">0</span> completados</div>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-xs font-bold uppercase text-gray-300 tracking-wider">Días del Mes (28 días)</h3>
+          <button onclick="resetAllProgress()" class="text-[10px] text-red-400 hover:text-red-300 underline font-medium">Reiniciar Progreso</button>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2" id="calendar-grid">
+          <!-- Carga dinámicamente -->
         </div>
       </div>
     </section>
@@ -184,98 +243,101 @@
   </main>
 
   <!-- PIE DE PÁGINA -->
-  <footer class="bg-gray-900 border-t border-gray-800 py-6 mt-12 text-center text-gray-400 text-sm font-medium">
+  <footer class="bg-gray-900 border-t border-gray-800 py-5 text-center text-gray-400 text-xs font-medium">
     Programa desarrollado por Alfredo Belandria
   </footer>
 
-  <!-- SCRIPT LÓGICA -->
+  <!-- LÓGICA JAVASCRIPT CON LOCALSTORAGE -->
   <script>
-    // DATOS DE NUTRICIÓN (SEMANAS)
+    // DATOS NUTRIONALES CON ESTIMACIÓN DE MACROS (4 SEMANAS x 4 COMIDAS = 16 COMIDAS TOTALES)
     const NUTRITION_DATA = {
       1: [
-        { meal: "Desayuno", title: "Arepas con Pescado o Huevo", desc: "2 arepas medianas rellenas con perico (2 huevos, tomate, cebolla) o atún/sardina. Acompaña con suero o queso duro rallado." },
-        { meal: "Almuerzo", title: "Pabellón Adaptado", desc: "1.5 tazas de arroz blanco, 1 taza de caraotas negras con comino, 120g de pollo desmechado o carne picada y plátano maduro horneado o frito." },
-        { meal: "Merienda", title: "Merengada de Avena y Banano", desc: "Licuado de 1 vaso de leche (o agua con leche en polvo), 4 cdas de avena, 1 banano (cambur) y 1 cda de mantequilla de maní." },
-        { meal: "Cena", title: "Yuca con Queso y Huevos Sancochados", desc: "250g de yuca sancochada con hilo de aceite o mantequilla, 2 huevos sancochados y queso blanco rallado." }
+        { id: "w1_m1", meal: "Desayuno", title: "Arepas con Pescado o Huevo", desc: "2 arepas medianas rellenas con perico (2 huevos, tomate, cebolla) o atún/sardina. Acompaña con suero o queso duro.", macros: "480 kcal | 24g Prot | 55g Carb | 14g Grasas" },
+        { id: "w1_m2", meal: "Almuerzo", title: "Pabellón Adaptado", desc: "1.5 tazas de arroz blanco, 1 taza de caraotas negras con comino, 120g de pollo desmechado o carne picada y plátano frito.", macros: "750 kcal | 38g Prot | 98g Carb | 18g Grasas" },
+        { id: "w1_m3", meal: "Merienda", title: "Merengada de Avena y Cambur", desc: "Licuado de 1 vaso de leche, 4 cdas de avena, 1 cambur y 1 cda de mantequilla de maní.", macros: "380 kcal | 14g Prot | 52g Carb | 12g Grasas" },
+        { id: "w1_m4", meal: "Cena", title: "Yuca con Queso y Huevos", desc: "250g de yuca sancochada con hilo de aceite o mantequilla, 2 huevos sancochados y queso duro rallado.", macros: "520 kcal | 22g Prot | 64g Carb | 16g Grasas" }
       ],
       2: [
-        { meal: "Desayuno", title: "Empanadas al Horno / Asadas", desc: "2 empanadas asadas de harina de maíz rellenas con carne molida o pollo y queso blanco." },
-        { meal: "Almuerzo", title: "Pollo Guisado con Ocumo/Yuca", desc: "1 pechuga o muslo de pollo guisado con verduras, 1.5 tazas de arroz o ensalada de papa con zanahoria." },
-        { meal: "Merienda", title: "Arepitas Dulces o Avena en Hojuelas", desc: "Avena cocida con leche, canela, cambur picado y un puñado de maní tostado." },
-        { meal: "Cena", title: "Revoltillo de Sardinas con Plátano", desc: "Plátano verde o maduro sancochado con revuelto de sardina en lata guisada con cebolla y ají dulce." }
+        { id: "w2_m1", meal: "Desayuno", title: "Empanadas Asadas con Carne", desc: "2 empanadas asadas de harina de maíz rellenas con carne molida o pollo y queso blanco.", macros: "490 kcal | 26g Prot | 50g Carb | 15g Grasas" },
+        { id: "w2_m2", meal: "Almuerzo", title: "Pollo Guisado con Ocumo/Yuca", desc: "1 pechuga o muslo de pollo guisado con verduras, 1.5 tazas de arroz o ensalada de papa con zanahoria.", macros: "710 kcal | 42g Prot | 85g Carb | 16g Grasas" },
+        { id: "w2_m3", meal: "Merienda", title: "Avena cocida con Maní", desc: "Avena cocida con leche, canela, cambur picado y un puñado de maní tostado.", macros: "360 kcal | 13g Prot | 48g Carb | 11g Grasas" },
+        { id: "w2_m4", meal: "Cena", title: "Revoltillo de Sardinas con Plátano", desc: "Plátano verde o maduro sancochado con revuelto de sardina en lata guisada con cebolla y ají dulce.", macros: "540 kcal | 28g Prot | 60g Carb | 14g Grasas" }
       ],
       3: [
-        { meal: "Desayuno", title: "Tortilla de Huevo con Plátano", desc: "3 huevos batidos hechos en tortilla con trozos de plátano maduro frito/asado y queso duro." },
-        { meal: "Almuerzo", title: "Sopa de Lagarto / Carne con Verduras", desc: "Tazón grande de sopa rica en yuca, ocumo, ahuyama, maíz y carne de res con 2 arepitas de acompañante." },
-        { meal: "Merienda", title: "Batido Nutritivo de Cambur y Avena", desc: "Cambur licuado con 5 cdas de avena, agua, leche en polvo y un toque de miel o papelón." },
-        { meal: "Cena", title: "Bollitos de Maíz con Guiso y Queso", desc: "3 bollitos de harina de maíz preparados con mantequilla, acompañados con pollo picado y queso salado." }
+        { id: "w3_m1", meal: "Desayuno", title: "Tortilla de Huevo con Plátano", desc: "3 huevos batidos hechos en tortilla con trozos de plátano maduro frito/asado y queso duro.", macros: "510 kcal | 25g Prot | 42g Carb | 22g Grasas" },
+        { id: "w3_m2", meal: "Almuerzo", title: "Sopa de Lagarto / Carne con Verduras", desc: "Tazón grande de sopa rica en yuca, ocumo, ahuyama, maíz y carne de res con 2 arepitas de acompañante.", macros: "780 kcal | 40g Prot | 90g Carb | 20g Grasas" },
+        { id: "w3_m3", meal: "Merienda", title: "Batido Nutritivo de Papelón y Avena", desc: "Cambur licuado con 5 cdas de avena, agua, leche en polvo y un toque de miel o papelón.", macros: "390 kcal | 12g Prot | 62g Carb | 8g Grasas" },
+        { id: "w3_m4", meal: "Cena", title: "Bollitos de Maíz con Guiso y Queso", desc: "3 bollitos de harina de maíz preparados con mantequilla, acompañados con pollo picado y queso salado.", macros: "530 kcal | 24g Prot | 66g Carb | 15g Grasas" }
       ],
       4: [
-        { meal: "Desayuno", title: "Arepa Reina Pepiada Casera", desc: "2 arepas rellenas con mezcla de pollo desmechado, 1/2 aguacate machacado y un toque de mayonesa/limón." },
-        { meal: "Almuerzo", title: "Carne Picada con Pasta y Tajadas", desc: "150g de pasta corta o larga con carne molida en salsa de tomate natural y plátano frito." },
-        { meal: "Merienda", title: "Sándwich Doble de Queso y Huevo", desc: "2 lonjas de pan molde o 1 pan francés con 2 huevos fritos o revueltos y queso blanco." },
-        { meal: "Cena", title: "Ahuyama Rellena o Puré con Pollo", desc: "Puré de ahuyama/yuca con mantequilla y abundante pollo salteado con vegetación regional." }
+        { id: "w4_m1", meal: "Desayuno", title: "Arepa Reina Pepiada Casera", desc: "2 arepas rellenas con mezcla de pollo desmechado, 1/2 aguacate machacado y un toque de mayonesa/limón.", macros: "550 kcal | 28g Prot | 52g Carb | 20g Grasas" },
+        { id: "w4_m2", meal: "Almuerzo", title: "Carne Picada con Pasta y Tajadas", desc: "150g de pasta corta o larga con carne molida en salsa de tomate natural y plátano frito.", macros: "760 kcal | 36g Prot | 92g Carb | 19g Grasas" },
+        { id: "w4_m3", meal: "Merienda", title: "Sándwich Doble de Queso y Huevo", desc: "2 lonjas de pan molde o 1 pan francés con 2 huevos fritos o revueltos y queso blanco.", macros: "420 kcal | 20g Prot | 44g Carb | 14g Grasas" },
+        { id: "w4_m4", meal: "Cena", title: "Puré de Yuca con Pollo Salteado", desc: "Puré de yuca o ahuyama con mantequilla y abundante pollo salteado con vegetación regional.", macros: "510 kcal | 32g Prot | 58g Carb | 12g Grasas" }
       ]
     };
 
-    // DATOS DE ENTRENAMIENTO CASERO
+    // DATOS DE ENTRENAMIENTO CASERO (5 DÍAS ACTIVOS x 5 EJERCICIOS = 25 EJERCICIOS TOTALES)
     const WORKOUT_DATA = {
       1: {
-        title: "Lunes: Torso - Empuje y Tracción Casera",
+        title: "Lunes: Torso - Empuje y Tracción",
         exercises: [
-          { name: "Flexiones de Pecho Tradicionales", target: "Pectorales, Tríceps, Deltoides", sets: "4 series", reps: "10 - 12 repeticiones", rest: "90 seg" },
-          { name: "Remo Casero con Mochila", target: "Espalda Alta, Dorsales, Bíceps", sets: "4 series", reps: "12 repeticiones", rest: "90 seg" },
-          { name: "Flexiones Pica (Enfocadas en Hombros)", target: "Hombros (Deltoides anterior y lateral)", sets: "3 series", reps: "8 - 10 repeticiones", rest: "60 seg" },
-          { name: "Fondos para Tríceps en Silla o Cama", target: "Tríceps, Pecho inferior", sets: "3 series", reps: "12 - 15 repeticiones", rest: "60 seg" },
-          { name: "Curl de Bíceps con Mochila / Botellones", target: "Bíceps, Antebrazos", sets: "3 series", reps: "12 repeticiones", rest: "60 seg" }
+          { id: "d1_ex1", name: "Flexiones de Pecho Tradicionales", target: "Pectorales, Tríceps, Deltoides", sets: "4 series", reps: "10 - 12 reps", rest: "90s" },
+          { id: "d1_ex2", name: "Remo Casero con Mochila", target: "Espalda Alta, Dorsales, Bíceps", sets: "4 series", reps: "12 reps", rest: "90s" },
+          { id: "d1_ex3", name: "Flexiones Pica (Enfocadas en Hombros)", target: "Hombros (Deltoides)", sets: "3 series", reps: "8 - 10 reps", rest: "60s" },
+          { id: "d1_ex4", name: "Fondos para Tríceps en Silla o Cama", target: "Tríceps, Pecho inferior", sets: "3 series", reps: "12 - 15 reps", rest: "60s" },
+          { id: "d1_ex5", name: "Curl de Bíceps con Mochila Cargada", target: "Bíceps, Antebrazos", sets: "3 series", reps: "12 reps", rest: "60s" }
         ]
       },
       2: {
-        title: "Martes: Pierna y Abdomen sin Equipo",
+        title: "Martes: Pierna y Abdomen en Piso",
         exercises: [
-          { name: "Sentadillas profundas con peso corporal", target: "Cuádriceps, Glúteos", sets: "4 series", reps: "15 - 20 repeticiones", rest: "90 seg" },
-          { name: "Sentadilla Búlgara (Pie apoyado en cama/silla)", target: "Cuádriceps, Glúteo mayor", sets: "3 series", reps: "10 - 12 por pierna", rest: "90 seg" },
-          { name: "Puente de Glúteo / Isquios en Suelo", target: "Isquiotibiales, Glúteos", sets: "3 series", reps: "15 repeticiones", rest: "60 seg" },
-          { name: "Elevación de Talones en Escalón (Pantorrillas)", target: "Gemelos, Sóleo", sets: "4 series", reps: "20 repeticiones", rest: "45 seg" },
-          { name: "Plancha Abdominal Estática", target: "Core, Abdomen, Lumbar", sets: "3 series", reps: "45 - 60 segundos", rest: "45 seg" }
+          { id: "d2_ex1", name: "Sentadillas profundas con peso corporal", target: "Cuádriceps, Glúteos", sets: "4 series", reps: "15 - 20 reps", rest: "90s" },
+          { id: "d2_ex2", name: "Sentadilla Búlgara (Pie en cama/silla)", target: "Cuádriceps, Glúteo mayor", sets: "3 series", reps: "10-12 /pierna", rest: "90s" },
+          { id: "d2_ex3", name: "Puente de Glúteo / Isquios en Suelo", target: "Isquiotibiales, Glúteos", sets: "3 series", reps: "15 reps", rest: "60s" },
+          { id: "d2_ex4", name: "Elevación de Talones en Escalón", target: "Gemelos, Pantorrillas", sets: "4 series", reps: "20 reps", rest: "45s" },
+          { id: "d2_ex5", name: "Plancha Abdominal Estática", target: "Core, Abdomen, Lumbar", sets: "3 series", reps: "45 - 60 seg", rest: "45s" }
         ]
       },
       3: {
         title: "Miércoles: Descanso Activo",
         exercises: [
-          { name: "Trote suave al aire libre o caminata rápida", target: "Salud Cardiovascular y Recuperación", sets: "1 sesión", reps: "20 - 30 minutos", rest: "-" },
-          { name: "Estiramientos corporales generales", target: "Flexibilidad y Alivio muscular", sets: "1 sesión", reps: "10 minutos", rest: "-" }
+          { id: "d3_ex1", name: "Trote suave al aire libre o caminata", target: "Salud Cardiovascular", sets: "1 sesión", reps: "20 - 30 min", rest: "-" },
+          { id: "d3_ex2", name: "Estiramientos corporales generales", target: "Flexibilidad y Alivio", sets: "1 sesión", reps: "10 min", rest: "-" }
         ]
       },
       4: {
         title: "Jueves: Torso e Intensidad Superior",
         exercises: [
-          { name: "Flexiones con Pies Elevados (En cama o silla)", target: "Pecho Superior, Hombros", sets: "4 series", reps: "8 - 10 repeticiones", rest: "90 seg" },
-          { name: "Remo Unilateral con Mochila Cargada", target: "Dorsal Ancho, Espalda Media", sets: "4 series", reps: "10 por brazo", rest: "90 seg" },
-          { name: "Elevaciones Laterales con Botellas de Agua", target: "Deltoides Lateral", sets: "4 series", reps: "15 repeticiones", rest: "45 seg" },
-          { name: "Flexiones Diamante (Manos juntas)", target: "Tríceps, Pecho Central", sets: "3 series", reps: "8 - 10 repeticiones", rest: "60 seg" },
-          { name: "Cruches Abdominales en Piso", target: "Abdomen Superior", sets: "3 series", reps: "20 repeticiones", rest: "45 seg" }
+          { id: "d4_ex1", name: "Flexiones con Pies Elevados (En cama)", target: "Pecho Superior, Hombros", sets: "4 series", reps: "8 - 10 reps", rest: "90s" },
+          { id: "d4_ex2", name: "Remo Unilateral con Mochila Cargada", target: "Dorsal Ancho, Espalda", sets: "4 series", reps: "10 / brazo", rest: "90s" },
+          { id: "d4_ex3", name: "Elevaciones Laterales con Botellas", target: "Deltoides Lateral", sets: "4 series", reps: "15 reps", rest: "45s" },
+          { id: "d4_ex4", name: "Flexiones Diamante (Manos juntas)", target: "Tríceps, Pecho Central", sets: "3 series", reps: "8 - 10 reps", rest: "60s" },
+          { id: "d4_ex5", name: "Crunches Abdominales en Piso", target: "Abdomen Superior", sets: "3 series", reps: "20 reps", rest: "45s" }
         ]
       },
       5: {
         title: "Viernes: Pierna Completa & Potencia",
         exercises: [
-          { name: "Zancadas / Desplazamientos Alternos", target: "Cuádriceps, Glúteos", sets: "4 series", reps: "12 por pierna", rest: "90 seg" },
-          { name: "Peso Muerto Rumano con Mochila Pesada", target: "Isquiotibiales, Zona Lumbar", sets: "4 series", reps: "12 - 15 repeticiones", rest: "90 seg" },
-          { name: "Sentadillas Isométricas (Espalda en pared)", target: "Cuádriceps", sets: "3 series", reps: "45 segundos sostenido", rest: "60 seg" },
-          { name: "Elevaciones de Pierna acostado en piso", target: "Abdomen Inferior", sets: "3 series", reps: "12 - 15 repeticiones", rest: "45 seg" },
-          { name: "Escaladores de Montaña (Mountain Climbers)", target: "Resistencia Cardiovascular & Core", sets: "3 series", reps: "40 segundos", rest: "45 seg" }
+          { id: "d5_ex1", name: "Zancadas / Desplazamientos Alternos", target: "Cuádriceps, Glúteos", sets: "4 series", reps: "12 / pierna", rest: "90s" },
+          { id: "d5_ex2", name: "Peso Muerto Rumano con Mochila", target: "Isquiotibiales, Lumbar", sets: "4 series", reps: "12 - 15 reps", rest: "90s" },
+          { id: "d5_ex3", name: "Sentadillas Isométricas en Pared", target: "Cuádriceps", sets: "3 series", reps: "45 seg sostenido", rest: "60s" },
+          { id: "d5_ex4", name: "Elevaciones de Pierna acostado en piso", target: "Abdomen Inferior", sets: "3 series", reps: "12 - 15 reps", rest: "45s" },
+          { id: "d5_ex5", name: "Escaladores de Montaña (Mountain Climbers)", target: "Resistencia & Core", sets: "3 series", reps: "40 seg", rest: "45s" }
         ]
       },
       6: {
         title: "Sábado y Domingo: Descanso Total",
         exercises: [
-          { name: "Descanso y recuperación muscular", target: "Síntesis de Proteína y Crecimiento", sets: "-", reps: "Dormir 7-8 horas diarios", rest: "-" }
+          { id: "d6_ex1", name: "Descanso y recuperación muscular", target: "Crecimiento Muscular", sets: "-", reps: "Dormir 7-8 hrs", rest: "-" }
         ]
       }
     };
 
-    // CONTROL DE PESTAÑAS
+    let currentNutriWeek = 1;
+    let currentWorkoutDay = 1;
+
+    // ABRIR PESTAÑAS
     function switchTab(tabId) {
       ['calculator', 'nutrition', 'workout', 'progress'].forEach(t => {
         document.getElementById(`section-${t}`).classList.add('hidden');
@@ -290,7 +352,7 @@
       activeBtn.classList.remove('text-gray-400');
     }
 
-    // CALCULADORA
+    // CALCULADORA DE IMC Y METABOLISMO
     function calculateStats(e) {
       if (e) e.preventDefault();
       const weight = parseFloat(document.getElementById('input-weight').value) || 51;
@@ -301,12 +363,10 @@
       const heightM = height / 100;
       const bmi = (weight / (heightM * heightM)).toFixed(1);
 
-      // TMB Mifflen-St Jeor
       let bmr = (10 * weight) + (6.25 * height) - (5 * age);
       bmr += (gender === 'male') ? 5 : -161;
 
-      const tdee = bmr * 1.375; // Actividad moderada
-      const bulkCalories = Math.round(tdee + 400);
+      const bulkCalories = Math.round((bmr * 1.375) + 400);
       const minProtein = Math.round(weight * 1.8);
       const maxProtein = Math.round(weight * 2.0);
 
@@ -315,8 +375,19 @@
       document.getElementById('res-protein').innerText = `${minProtein} - ${maxProtein} g`;
     }
 
-    // CAMBIO DE SEMANA NUTRICIONAL
+    // TOGGLE SELECCIÓN DE COMIDAS
+    function toggleMeal(mealId) {
+      const savedMeals = JSON.parse(localStorage.getItem('venebulk_meals') || '{}');
+      savedMeals[mealId] = !savedMeals[mealId];
+      localStorage.setItem('venebulk_meals', JSON.stringify(savedMeals));
+      
+      switchNutriWeek(currentNutriWeek);
+      updateOverallProgress();
+    }
+
+    // RENDERIZAR SEMANA NUTRICIONAL
     function switchNutriWeek(week) {
+      currentNutriWeek = week;
       for (let i = 1; i <= 4; i++) {
         const btn = document.getElementById(`nutri-w${i}`);
         if (i === week) {
@@ -328,23 +399,44 @@
         }
       }
 
+      const savedMeals = JSON.parse(localStorage.getItem('venebulk_meals') || '{}');
       const container = document.getElementById('nutrition-meals-container');
       container.innerHTML = '';
+
       NUTRITION_DATA[week].forEach(m => {
+        const isEaten = savedMeals[m.id] || false;
         container.innerHTML += `
-          <div class="bg-gray-950 border border-gray-800 p-5 rounded-xl flex flex-col justify-between">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20">${m.meal}</span>
-              <h3 class="text-lg font-bold text-gray-100 mt-3 mb-2">${m.title}</h3>
-              <p class="text-xs text-gray-400 leading-relaxed">${m.desc}</p>
+          <div class="border ${isEaten ? 'bg-emerald-950/30 border-emerald-500/50' : 'bg-gray-950 border-gray-800'} p-4 rounded-xl transition-all duration-200">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider ${isEaten ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30' : 'text-amber-400 bg-amber-500/10 border-amber-500/20'} px-2 py-0.5 rounded border">
+                ${m.meal}
+              </span>
+              <span class="text-[10px] text-gray-400 font-medium">${m.macros}</span>
             </div>
+            <h3 class="text-sm font-bold text-gray-100 mb-1">${m.title}</h3>
+            <p class="text-xs text-gray-400 mb-3 leading-relaxed">${m.desc}</p>
+            <button onclick="toggleMeal('${m.id}')" class="w-full py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${isEaten ? 'bg-emerald-500 text-gray-950 shadow-md shadow-emerald-500/20' : 'bg-gray-900 border border-gray-700 text-gray-300 hover:border-amber-500 hover:text-amber-400'}">
+              <i class="fa-solid ${isEaten ? 'fa-circle-check' : 'fa-circle'}"></i>
+              ${isEaten ? 'Consumido' : 'Marcar como consumido'}
+            </button>
           </div>
         `;
       });
     }
 
-    // RENDERIZAR ENTRENAMIENTO
+    // TOGGLE SELECCIÓN DE EJERCICIOS
+    function toggleExercise(exId) {
+      const savedEx = JSON.parse(localStorage.getItem('venebulk_exercises') || '{}');
+      savedEx[exId] = !savedEx[exId];
+      localStorage.setItem('venebulk_exercises', JSON.stringify(savedEx));
+
+      renderWorkoutDay(currentWorkoutDay);
+      updateOverallProgress();
+    }
+
+    // RENDERIZAR RUTINA DE ENTRENAMIENTO
     function renderWorkoutDay(day) {
+      currentWorkoutDay = day;
       for (let i = 1; i <= 6; i++) {
         const btn = document.getElementById(`day-btn-${i}`);
         if (i === day) {
@@ -356,23 +448,33 @@
         }
       }
 
+      const savedEx = JSON.parse(localStorage.getItem('venebulk_exercises') || '{}');
       const container = document.getElementById('workout-list-container');
       const data = WORKOUT_DATA[day];
 
-      let html = `<h3 class="text-lg font-bold text-amber-300 mb-4">${data.title}</h3>`;
+      let html = `<h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">${data.title}</h3>`;
       
-      data.exercises.forEach((ex, idx) => {
+      data.exercises.forEach(ex => {
+        const isDone = savedEx[ex.id] || false;
         html += `
-          <div class="bg-gray-950 border border-gray-800 p-5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h4 class="font-bold text-base text-gray-100">${ex.name}</h4>
-              <p class="text-xs text-amber-400/80 mt-1"><i class="fa-solid fa-bullseye mr-1"></i> ${ex.target}</p>
+          <div class="border ${isDone ? 'bg-emerald-950/30 border-emerald-500/50' : 'bg-gray-950 border-gray-800'} p-4 rounded-xl transition-all duration-200">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <h4 class="font-bold text-sm text-gray-100">${ex.name}</h4>
+                <p class="text-[10px] text-amber-400/80 mt-0.5"><i class="fa-solid fa-bullseye mr-1"></i> ${ex.target}</p>
+              </div>
             </div>
-            <div class="flex items-center gap-4 text-xs">
-              <span class="bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg text-gray-300 font-medium">${ex.sets}</span>
-              <span class="bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg text-amber-400 font-semibold">${ex.reps}</span>
-              <span class="bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg text-gray-400">${ex.rest} descanso</span>
+            
+            <div class="flex items-center gap-2 text-[10px] mb-3">
+              <span class="bg-gray-900 border border-gray-800 px-2 py-1 rounded text-gray-300 font-medium">${ex.sets}</span>
+              <span class="bg-gray-900 border border-gray-800 px-2 py-1 rounded text-amber-400 font-bold">${ex.reps}</span>
+              <span class="bg-gray-900 border border-gray-800 px-2 py-1 rounded text-gray-400">${ex.rest}</span>
             </div>
+
+            <button onclick="toggleExercise('${ex.id}')" class="w-full py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${isDone ? 'bg-emerald-500 text-gray-950 shadow-md shadow-emerald-500/20' : 'bg-gray-900 border border-gray-700 text-gray-300 hover:border-amber-500 hover:text-amber-400'}">
+              <i class="fa-solid ${isDone ? 'fa-circle-check' : 'fa-circle'}"></i>
+              ${isDone ? 'Completado' : 'Marcar como completado'}
+            </button>
           </div>
         `;
       });
@@ -380,36 +482,90 @@
       container.innerHTML = html;
     }
 
-    // INICIALIZAR BITÁCORA DE PROGRESO
+    // CALCULAR PORCENTAJES GLOBALES Y REPARTO MENSUAL
+    function updateOverallProgress() {
+      const savedMeals = JSON.parse(localStorage.getItem('venebulk_meals') || '{}');
+      const savedEx = JSON.parse(localStorage.getItem('venebulk_exercises') || '{}');
+
+      // 16 Comidas Totales (4 semanas x 4 platos)
+      let eatenCount = 0;
+      Object.keys(NUTRITION_DATA).forEach(w => {
+        NUTRITION_DATA[w].forEach(m => {
+          if (savedMeals[m.id]) eatenCount++;
+        });
+      });
+
+      // 21 Ejercicios Totales
+      let doneExCount = 0;
+      Object.keys(WORKOUT_DATA).forEach(d => {
+        WORKOUT_DATA[d].exercises.forEach(ex => {
+          if (savedEx[ex.id]) doneExCount++;
+        });
+      });
+
+      const nutriPercent = Math.round((eatenCount / 16) * 100);
+      const workoutPercent = Math.round((doneExCount / 21) * 100);
+      const totalPercent = Math.round(((eatenCount + doneExCount) / 37) * 100);
+
+      // Actualizar Barras de Nutrición
+      document.getElementById('nutri-progress-percent').innerText = `${nutriPercent}%`;
+      document.getElementById('nutri-progress-bar').style.width = `${nutriPercent}%`;
+
+      // Actualizar Barras de Entrenamiento
+      document.getElementById('workout-progress-percent').innerText = `${workoutPercent}%`;
+      document.getElementById('workout-progress-bar').style.width = `${workoutPercent}%`;
+
+      // Actualizar Cabecera y Bitácora
+      document.getElementById('header-progress-text').innerText = `${totalPercent}%`;
+      document.getElementById('bitacora-total-percent').innerText = `${totalPercent}%`;
+      document.getElementById('bitacora-total-bar').style.width = `${totalPercent}%`;
+      document.getElementById('bitacora-nutri-count').innerText = `${eatenCount}/16`;
+      document.getElementById('bitacora-workout-count').innerText = `${doneExCount}/21`;
+
+      initProgressCalendar();
+    }
+
+    // BITÁCORA DE DÍAS (28 DÍAS)
     function initProgressCalendar() {
       const grid = document.getElementById('calendar-grid');
       grid.innerHTML = '';
-      const saved = JSON.parse(localStorage.getItem('venebulk_progress') || '{}');
+      const savedDays = JSON.parse(localStorage.getItem('venebulk_days') || '{}');
 
       for (let d = 1; d <= 28; d++) {
-        const isDone = saved[d] || false;
+        const isChecked = savedDays[d] || false;
         grid.innerHTML += `
-          <button onclick="toggleDayProgress(${d})" id="day-card-${d}" class="p-4 rounded-xl border text-center transition-all ${isDone ? 'bg-amber-500/20 border-amber-500 text-amber-400' : 'bg-gray-950 border-gray-800 text-gray-400 hover:border-gray-700'}">
-            <div class="text-xs font-semibold uppercase mb-1">Día ${d}</div>
-            <i class="fa-solid ${isDone ? 'fa-circle-check text-xl' : 'fa-circle-thin text-xl'}"></i>
+          <button onclick="toggleDayCalendar(${d})" class="p-2.5 rounded-xl border text-center transition-all ${isChecked ? 'bg-amber-500/20 border-amber-500 text-amber-400' : 'bg-gray-950 border-gray-800 text-gray-500 hover:border-gray-700'}">
+            <div class="text-[10px] font-bold uppercase mb-0.5">Día ${d}</div>
+            <i class="fa-solid ${isChecked ? 'fa-square-check text-base' : 'fa-square text-base text-gray-700'}"></i>
           </button>
         `;
       }
     }
 
-    function toggleDayProgress(day) {
-      const saved = JSON.parse(localStorage.getItem('venebulk_progress') || '{}');
-      saved[day] = !saved[day];
-      localStorage.setItem('venebulk_progress', JSON.stringify(saved));
+    function toggleDayCalendar(day) {
+      const savedDays = JSON.parse(localStorage.getItem('venebulk_days') || '{}');
+      savedDays[day] = !savedDays[day];
+      localStorage.setItem('venebulk_days', JSON.stringify(savedDays));
       initProgressCalendar();
     }
 
-    // INICIALIZACIÓN
+    function resetAllProgress() {
+      if (confirm("¿Estás seguro de reiniciar todo el progreso de comidas y ejercicios del mes?")) {
+        localStorage.removeItem('venebulk_meals');
+        localStorage.removeItem('venebulk_exercises');
+        localStorage.removeItem('venebulk_days');
+        switchNutriWeek(currentNutriWeek);
+        renderWorkoutDay(currentWorkoutDay);
+        updateOverallProgress();
+      }
+    }
+
+    // INICIALIZACIÓN DE LA PÁGINA
     window.onload = function() {
       calculateStats();
       switchNutriWeek(1);
       renderWorkoutDay(1);
-      initProgressCalendar();
+      updateOverallProgress();
     };
   </script>
 </body>
